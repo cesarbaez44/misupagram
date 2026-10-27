@@ -12,7 +12,7 @@ export default function PostCard({ post, currentUserId, onLike, onComment }: Pos
   const [commentText, setCommentText] = useState("");
   const [showComments, setShowComments] = useState(false);
 
-  const username = post.profile?.username || "default_user";
+  const username = post.profile?.username || "Ale";
   const avatarUrl = post.profile?.avatar_url || DEFAULT_AVATAR;
 
   const handleSubmitComment = (e: React.FormEvent) => {
