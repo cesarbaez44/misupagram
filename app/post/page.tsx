@@ -1,10 +1,10 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Image from "next/image";
-import { useRef, useState } from "react";
 import { supabase } from "../lib/supabase";
-export default function CreatePage() {
 
+export default function CreatePage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [caption, setCaption] = useState("");
@@ -33,12 +33,12 @@ export default function CreatePage() {
   };
 
   const uploadAndCreatePost = async (file: File) => {
-    const userId = "88888888-8888-8888-8888-888888888888";
+    const userId = "11111111-1111-1111-1111-111111111111";
 
     // 1️⃣ Preparar nombre del archivo
     const fileExt = file.name.split(".").pop();
     const fileName = `${file.name}-${Date.now()}.${fileExt}`;
-    const filePath = `posts/${fileName}`;
+    const filePath = `images/${fileName}`;
 
     // 2️⃣ Subir al bucket "images"
     const { data: uploadData, error: uploadError } = await supabase.storage
@@ -49,9 +49,9 @@ export default function CreatePage() {
       });
 
     if (uploadError) {
-  console.error("❌ ERROR STORAGE:", JSON.stringify(uploadError, null, 2));
-  throw uploadError;
-}
+      console.error("❌ Error al subir imagen:", uploadError);
+      throw uploadError;
+    }
 
     // 3️⃣ Obtener URL pública
     const { data: urlData } = supabase.storage
@@ -74,9 +74,9 @@ export default function CreatePage() {
       .select("*");
 
     if (postError) {
-  console.error("❌ ERROR POSTS:", JSON.stringify(postError, null, 2));
-  throw postError;
-}
+      console.error("❌ Error creando el post:", postError);
+      throw postError;
+    }
 
     console.log("🆕 Post creado:", postData);
 

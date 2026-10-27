@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 import { supabase } from "../lib/supabase";
-import { HeartIcon } from "../components/HeartIcon";
 import Modal from "../components/Modal";
 import { Post } from "../types";
+import { HeartIcon } from "../components/Heartlcon";
 
 export default function RankPage() {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
@@ -75,7 +75,7 @@ export default function RankPage() {
       {/* Header */}
       <header className="sticky top-0 z-40 bg-card-bg border-b border-border">
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-center">
-          <h1 className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Ranking
           </h1>
         </div>
