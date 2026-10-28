@@ -6,7 +6,8 @@ import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import Modal from "../components/Modal";
 import { Post } from "../types";
-import { HeartIcon } from "../components/Heartlcon";
+
+import { HeartIcon } from "../components/HeartIcon";
 
 export default function RankPage() {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
